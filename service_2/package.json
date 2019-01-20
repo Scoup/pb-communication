@@ -5,7 +5,7 @@
   "main": "server.ts",
   "scripts": {
     "build": "tsc",
-    "dev": "ts-node-dev server.ts",
+    "start": "ts-node-dev server.ts",
     "test": "mocha -r ts-node/register src/**/*.spec.ts --timeout 2000"
   },
   "author": "",

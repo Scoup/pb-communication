@@ -1,14 +1,22 @@
 import * as path from 'path';
 import * as express from 'express';
 import * as bodyParser from 'body-parser';
+
 import { ProductRouter } from './routes/products.router';
+import { DB } from './models/db';
+
 
 export class App {
   public express: express.Application;
   constructor() {
     this.express = express();
+    this.startDb();
     this.middleware();
     this.routes();
+  }
+
+  private startDb() {
+    DB.connect();
   }
 
   private middleware(): void {

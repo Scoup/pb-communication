@@ -4,7 +4,7 @@ import { User } from '../protos/users/user_pb';
 
 export class ProductRouter {
   public router = Router();
-  public service = new ProductsService();
+  public static service = new ProductsService();
 
   constructor() {
     this.init();
@@ -14,7 +14,7 @@ export class ProductRouter {
     this.router.get('/', this.get);
   }
 
-  public getUser(req: Request): User | null {
+  public static getUser(req: Request): User | null {
     let id = req.header('X-USER-ID');
     if(!id) return null;
 
@@ -24,8 +24,8 @@ export class ProductRouter {
   }
 
   public get(req: Request, res: Response, next: NextFunction) {
-    let user = this.getUser(req)
-    this.service
+    let user = ProductRouter.getUser(req)
+    ProductRouter.service
       .getWithDiscounts(user)
       .then((products) => {
         res.send(products.map((p) => p.toObject(true)));

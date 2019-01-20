@@ -2,7 +2,7 @@ import { App } from './src/app';
 import { DB } from './src/models/db';
 
 let app = new App().express;
-const port: number = parseInt(process.env['PORT']) || 3000;
+const port: number = parseInt(process.env['PORT']) || 4000;
 
 process.on('SIGINT', function() {
   DB.disconnect().then(() => {

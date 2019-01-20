@@ -80,24 +80,81 @@ describe('DiscountsService', () => {
       discount = new Discount();
     });
 
-    it('get request with user and product')
-    it('apply discount on product and return it')
-    it('return product without discount if call fails')
+    it('get request with user and product', (done) => {
+      sinon.stub(subject, 'get').callsFake((p: Product, u: User) => {
+        expect(p).to.eq(product);
+        expect(u).to.eq(user);
+        return Promise.resolve(discount);
+      });
+
+      subject.applyDiscount(product, user).then((data) => {
+        done();
+      }).catch(err => done(err));
+    });
+
+    it('apply discount on product and return it', (done) => {
+      sinon.stub(subject, 'get').callsFake((p: Product, u: User) => {
+        return Promise.resolve(discount);
+      });
+
+      subject.applyDiscount(product, user).then((data) => {
+        expect(data.getDiscount()).to.eq(discount);
+        done();
+      }).catch(err => done(err));
+    });
+
+    it('return product without discount if call fails', (done) => {
+      sinon.stub(subject, 'get').callsFake((p: Product, u: User) => {
+        return Promise.reject('anything');
+      });
+
+      subject.applyDiscount(product, user).then((data) => {
+        expect(data).to.eq(product);
+        done();
+      }).catch(err => done(err));
+    });
   });
 
   context('#applyDiscounts', () => {
     let subject: DiscountsService;
     let user: User;
-    let product: Product;
     let discount: Discount;
+    let products: Product[];
     beforeEach(() => {
       subject = new DiscountsService();
       user = new User();
-      product = new Product();
       discount = new Discount();
+      products = [];
+      products.push(new Product());
+      products.push(new Product());
     });
 
-    it('get request with all products with user')
-    it('return all products even if discounts fails')
+    it('get request with all products with user', (done) => {
+      sinon.stub(subject, 'get').callsFake((p: Product, u: User) => {
+        return Promise.resolve(discount);
+      });
+
+      subject.applyDiscounts(products, user).then((products) => {
+        products.forEach((product) => {
+          expect(product.getDiscount()).to.eq(discount);
+        });
+        expect(products.length).to.eq(2);
+        done();
+      }).catch(err => done(err));
+    });
+
+    it('return all products even if discounts fails', (done) => {
+      sinon.stub(subject, 'get').callsFake((p: Product, u: User) => {
+        return Promise.reject('anything');
+      });
+
+      subject.applyDiscounts(products, user).then((products) => {
+        products.forEach((product) => {
+          expect(product.getDiscount()).not.to.eq(discount);
+        });
+        expect(products.length).to.eq(2);
+        done();
+      }).catch(err => done(err));
+    })
   });
 });

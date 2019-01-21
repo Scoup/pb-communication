@@ -164,7 +164,7 @@ proto.discounts.Discount.prototype.getPct = function() {
 
 /** @param {number} value */
 proto.discounts.Discount.prototype.setPct = function(value) {
-  jspb.Message.setProto3FloatField(this, 1, value);
+  jspb.Message.setField(this, 1, value);
 };
 
 
@@ -179,7 +179,7 @@ proto.discounts.Discount.prototype.getValueInCents = function() {
 
 /** @param {number} value */
 proto.discounts.Discount.prototype.setValueInCents = function(value) {
-  jspb.Message.setProto3IntField(this, 2, value);
+  jspb.Message.setField(this, 2, value);
 };
 
 
@@ -333,7 +333,7 @@ proto.discounts.DiscountRequest.prototype.getUserId = function() {
 
 /** @param {string} value */
 proto.discounts.DiscountRequest.prototype.setUserId = function(value) {
-  jspb.Message.setProto3StringField(this, 1, value);
+  jspb.Message.setField(this, 1, value);
 };
 
 
@@ -348,7 +348,7 @@ proto.discounts.DiscountRequest.prototype.getProductId = function() {
 
 /** @param {string} value */
 proto.discounts.DiscountRequest.prototype.setProductId = function(value) {
-  jspb.Message.setProto3StringField(this, 2, value);
+  jspb.Message.setField(this, 2, value);
 };
 
 

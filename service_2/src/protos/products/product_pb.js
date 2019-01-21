@@ -201,7 +201,7 @@ proto.products.Product.prototype.getId = function() {
 
 /** @param {string} value */
 proto.products.Product.prototype.setId = function(value) {
-  jspb.Message.setProto3StringField(this, 1, value);
+  jspb.Message.setField(this, 1, value);
 };
 
 
@@ -216,7 +216,7 @@ proto.products.Product.prototype.getPriceInCents = function() {
 
 /** @param {number} value */
 proto.products.Product.prototype.setPriceInCents = function(value) {
-  jspb.Message.setProto3IntField(this, 2, value);
+  jspb.Message.setField(this, 2, value);
 };
 
 
@@ -231,7 +231,7 @@ proto.products.Product.prototype.getTitle = function() {
 
 /** @param {string} value */
 proto.products.Product.prototype.setTitle = function(value) {
-  jspb.Message.setProto3StringField(this, 3, value);
+  jspb.Message.setField(this, 3, value);
 };
 
 
@@ -246,7 +246,7 @@ proto.products.Product.prototype.getDescription = function() {
 
 /** @param {string} value */
 proto.products.Product.prototype.setDescription = function(value) {
-  jspb.Message.setProto3StringField(this, 4, value);
+  jspb.Message.setField(this, 4, value);
 };
 
 

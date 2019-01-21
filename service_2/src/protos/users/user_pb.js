@@ -189,7 +189,7 @@ proto.users.User.prototype.getId = function() {
 
 /** @param {string} value */
 proto.users.User.prototype.setId = function(value) {
-  jspb.Message.setProto3StringField(this, 1, value);
+  jspb.Message.setField(this, 1, value);
 };
 
 
@@ -204,7 +204,7 @@ proto.users.User.prototype.getFirstName = function() {
 
 /** @param {string} value */
 proto.users.User.prototype.setFirstName = function(value) {
-  jspb.Message.setProto3StringField(this, 2, value);
+  jspb.Message.setField(this, 2, value);
 };
 
 
@@ -219,7 +219,7 @@ proto.users.User.prototype.getLastName = function() {
 
 /** @param {string} value */
 proto.users.User.prototype.setLastName = function(value) {
-  jspb.Message.setProto3StringField(this, 3, value);
+  jspb.Message.setField(this, 3, value);
 };
 
 

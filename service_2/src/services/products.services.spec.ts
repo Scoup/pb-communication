@@ -10,30 +10,27 @@ import { ProductsService } from './products.service';
 import { Product as ProductPB } from '../protos/products/product_pb';
 import { User } from '../protos/users/user_pb';
 
-before((done)=> {
-  DB.connect('localhost/test').then(() => done());
-});
-
-after((done) => {
-  DB.disconnect().then(() => done());
-});
-
-beforeEach((done) => {
-  done();
-});
-
 describe('ProductsService', () => {
+  before((done)=> {
+    DB.connect('localhost/test').then(() => done());
+  });
+
+  after((done) => {
+    DB.disconnect().then(() => done());
+  });
+
+  afterEach((done) => {
+    Product.remove({}).then(() => done());
+  });
 
   context('#getProducts', () => {
     beforeEach((done) => {
-      Product.remove({}).then(() => {
-        let product = new Product({
-          title: 'Title',
-          priceInCents: 150,
-          description: 'Product test'
-        });
-        product.save().then(() => done()).catch(err => done(err));
+      let product = new Product({
+        title: 'Title',
+        priceInCents: 150,
+        description: 'Product test'
       });
+      product.save().then(() => done()).catch(err => done(err));
     });
 
     it('return the products as protocol buffer', (done) => {
@@ -63,14 +60,12 @@ describe('ProductsService', () => {
     });
 
     beforeEach((done) => {
-      Product.remove({}).then(() => {
-        let product = new Product({
-          title: 'Title',
-          priceInCents: 150,
-          description: 'Product test'
-        });
-        product.save().then(() => done()).catch(err => done(err));
+      let product = new Product({
+        title: 'Title',
+        priceInCents: 150,
+        description: 'Product test'
       });
+      product.save().then(() => done()).catch(err => done(err));
     });
 
     it('return products if do not have user', (done) => {

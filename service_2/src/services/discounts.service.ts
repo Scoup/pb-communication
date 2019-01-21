@@ -1,10 +1,12 @@
-import { DiscountServiceClient } from '../protos/discounts/discount_pb_service';
+import { DiscountServiceClient } from '../protos/discounts/discount_grpc_pb';
 import { DiscountRequest, DiscountResponse, Discount } from '../protos/discounts/discount_pb';
 import { Product } from '../protos/products/product_pb';
 import { User } from '../protos/users/user_pb';
+import *  as grpc from 'grpc';
 
 export class DiscountsService {
-  public service = new DiscountServiceClient(process.env['DISCOUNT_API']);
+  public service = new DiscountServiceClient(process.env['DISCOUNT_API'],
+    grpc.credentials.createInsecure());
 
   public get(product: Product, user: User): Promise<Discount> {
     let discountRequest = new DiscountRequest();

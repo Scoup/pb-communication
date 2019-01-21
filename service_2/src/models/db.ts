@@ -5,10 +5,12 @@ export abstract class DB {
   private static connection: Database;
 
   public static connect(database?: string): Promise<void> {
-    this.disconnect();
-    this.connection = new Database(database);
-    return this.connection.connect().then(() =>
-      Promise.resolve(this.registerModels()));
+    return this.disconnect()
+    .then(() => {
+      this.connection = new Database(database);
+      return this.connection.connect();
+    })
+    .then(() => Promise.resolve(this.registerModels()));
   }
 
   private static registerModels() {
@@ -17,6 +19,10 @@ export abstract class DB {
 
   public static disconnect(): Promise<void> {
     if(!this.connection) return Promise.resolve();
-    return this.connection.disconnect();
+    return this.connection.disconnect()
+    .then(() => {
+      this.connection = null;
+      return Promise.resolve();
+    });
   }
 }

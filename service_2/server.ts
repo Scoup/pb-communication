@@ -4,7 +4,7 @@ import { DB } from './src/models/db';
 let app = new App().express;
 const port: number = parseInt(process.env['PORT']) || 4000;
 
-process.on('SIGINT', function() {
+process.on('SIGINT', () => {
   DB.disconnect().then(() => {
     process.exit(0);
   });
@@ -12,8 +12,8 @@ process.on('SIGINT', function() {
 
 app.listen(port, () => {
   console.log(`Listening at http://localhost:${port}/`);
-  DB.connect().then(() => {
-    console.log('Database connected!')
+  DB.connect(process.env['production']).then(() => {
+    console.log('Database connected!');
   })
   .catch((err) => {
     console.error('Was not possible connect to database:')

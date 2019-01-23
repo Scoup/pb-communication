@@ -4,7 +4,7 @@ Example of two services using protocol buffers.
 
 ## Create Protocol
 
-Protocols are defined on `protos` folder. You can use `docker-protoc-ts` to generate the protocol for each platform (for more info read the README)
+Protocols are defined on `protos` folder. You can use `docker-protoc` to generate the protocol for each platform (for more info read the README)
 
 ## Service 2
 

@@ -5,7 +5,7 @@ import { User } from '../protos/users/user_pb';
 import *  as grpc from 'grpc';
 
 export class DiscountsService {
-  public service = new DiscountServiceClient(process.env['DISCOUNT_API'],
+  public service = new DiscountServiceClient(process.env['DISCOUNT_API'] || '',
     grpc.credentials.createInsecure());
 
   public get(product: Product, user: User): Promise<Discount> {

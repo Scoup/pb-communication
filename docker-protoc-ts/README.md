@@ -14,7 +14,7 @@ Check docker-protoc documentation. You could use "typescript" as language.
 
 ## Use image to compile code
 
-```$ docker run --rm -v `pwd`:/defs docker-protoc:lastest -d protos -l typescript```
+```$ docker run --rm -v `pwd`:/defs docker-protoc:latest -d protos -l typescript```
 
 # TODO
 

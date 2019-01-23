@@ -16,8 +16,6 @@ export class ProductRouter {
 
   public static getUser(req: Request): User | null {
     let id = req.header('X-USER-ID');
-    if(!id) return null;
-
     let user = new User();
     user.setId(id);
     return user;

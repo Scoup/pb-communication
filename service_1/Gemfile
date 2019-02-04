@@ -12,3 +12,7 @@ gem 'pry'
 gem 'rake'
 gem 'rspec'
 gem 'timecop'
+
+group :test do
+  gem 'mongoid-rspec'
+end

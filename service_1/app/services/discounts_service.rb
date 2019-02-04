@@ -30,7 +30,7 @@ class DiscountService
   end
 
   def calculate_pct(discounts)
-    total_pct = discounts.inject { |sum, discount| sum + discount }
+    total_pct = discounts.inject(0) { |sum, discount| sum + discount.pct }
     [total_pct, MAX_PCT].min.to_f
   end
 end

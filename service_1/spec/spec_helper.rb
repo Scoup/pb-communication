@@ -1,9 +1,12 @@
+require 'mongoid-rspec'
 require './lib/discounts_service'
 
-ENV['environment'] = 'development'
+ENV['MONGOID_ENV'] = 'test'
 
 require './app'
 RSpec.configure do |config|
+  Mongoid.load!('./spec/config/mongoid.yml')
+  config.include Mongoid::Matchers
   # The settings below are suggested to provide a good initial experience
   # with RSpec, but feel free to customize to your heart's content.
   # These two settings work together to allow you to limit a spec run

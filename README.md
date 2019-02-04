@@ -6,7 +6,7 @@ Example of two services using protocol buffers.
 
 Protocols are defined on `protos` folder. You can use `docker-protoc` to generate the protocol for each platform (for more info read the README)
 
-## Service 2
+## Service 1
 
 - Service using Ruby
 - Get discount of user/product

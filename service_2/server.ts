@@ -14,7 +14,7 @@ process.on('SIGINT', () => {
 app.listen(port, () => {
   console.log(`Listening at http://localhost:${port}/`);
   DB.connect(database).then(() => {
-    console.log('Database connected!');
+    console.log(`Database connected! ${database}`);
   })
   .catch((err) => {
     console.error('Was not possible connect to database:')

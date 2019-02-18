@@ -1,0 +1,48 @@
+version: '2'
+services:
+  mongo:
+    container_name: mongo
+    image: mongo
+    restart: always
+    ports:
+      - '27017:27017'
+      - '28017:28017'
+    volumes:
+      - mongo-data:/var/lib/mongo/
+    environment:
+      - AUTH=no
+
+  service_1:
+    build:
+      context: ./service_1
+    environment:
+      DATABASE_SERVER: 'mongo:27017'
+      DATABASE_NAME: 'development'
+      SERVER_PATH: '0.0.0.0:50052'
+    ports:
+      - '50052:50052'
+    depends_on:
+      - mongo
+    links:
+      - mongo
+
+  service_2:
+    build:
+      context: ./service_2
+    environment:
+      PORT: 4000
+      DATABASE_SERVER: 'mongo:27017'
+      DATABASE_NAME: 'development'
+      DISCOUNT_API: 'service_1:50052'
+    ports:
+      - '80:4000'
+    depends_on:
+      - mongo
+      - service_1
+    links:
+      - mongo
+      - service_1
+
+volumes:
+  mongo-data:
+    driver: local
